@@ -9,6 +9,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.ignismark.castor.data.Exercise
+import com.ignismark.castor.data.local.LocalExercisesDataProvider.exercises
 
 @Composable
 fun CastorExercisesScreen(paddingValues: PaddingValues) {
@@ -28,30 +30,3 @@ fun ExerciseCard(exercise: Exercise) {
     }
 }
 
-val exercises: List<Exercise> = listOf(
-    Exercise(
-        name = "Dumbbell Lateral Press",
-        equipment = "Dumbbell",
-        countType = "Weight and Reps",
-        muscleGroup = "Chest"
-    ),
-    Exercise(
-        name = "Push-up",
-        equipment = "Bodyweight",
-        countType = "Reps",
-        muscleGroup = "Chest"
-    ),
-    Exercise(
-        name = "Dumbbell Squat",
-        equipment = "Dumbbell",
-        countType = "Weight and Reps",
-        muscleGroup = "Legs"
-    )
-)
-
-data class Exercise(
-    val name: String,
-    val equipment: String,
-    val countType: String,
-    val muscleGroup: String
-)
