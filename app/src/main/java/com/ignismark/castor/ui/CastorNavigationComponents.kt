@@ -15,6 +15,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,13 +43,16 @@ fun CastorTopBar(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun CastorBottomNavigation(modifier: Modifier = Modifier) {
+fun CastorBottomNavigation(
+    navController: NavController,
+    modifier: Modifier = Modifier
+) {
     NavigationBar(
         modifier = modifier
     ) {
         NavigationBarItem(
             selected = true,
-            onClick = { /*TODO*/ },
+            onClick = { navController.navigate(CastorAppScreen.Calendar.title) },
             icon = {
                 Icon(
                     imageVector = Icons.Filled.DateRange,
@@ -72,7 +76,7 @@ fun CastorBottomNavigation(modifier: Modifier = Modifier) {
         )
         NavigationBarItem(
             selected = false,
-            onClick = { /*TODO*/ },
+            onClick = { navController.navigate(CastorAppScreen.ExercisesList.title) },
             icon = {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.List,
