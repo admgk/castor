@@ -23,4 +23,6 @@ object LocalExercisesDataProvider {
             muscleGroup = "Legs"
         )
     )
+
+    val defaultExercise = exercises[0]
 }

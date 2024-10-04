@@ -10,7 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun CastorCalendarScreen(paddingValues: PaddingValues) {
+fun CastorCalendarScreen(
+    castorUiState: CastorUiState,
+    paddingValues: PaddingValues
+) {
     Surface(modifier = Modifier.padding(paddingValues)) {
         CastorDatePicker()
     }

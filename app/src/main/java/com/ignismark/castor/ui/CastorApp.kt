@@ -2,7 +2,9 @@ package com.ignismark.castor.ui
 
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -10,6 +12,9 @@ import com.ignismark.castor.ui.theme.CastorTheme
 
 @Composable
 fun CastorApp() {
+
+    val viewModel: CastorViewModel = viewModel()
+    val castorUiState = viewModel.uiState.collectAsState().value
     val navController = rememberNavController()
 
     Scaffold(
@@ -26,13 +31,22 @@ fun CastorApp() {
             startDestination = CastorAppScreen.Calendar.title
         ) {
             composable(route = CastorAppScreen.Calendar.title) {
-                CastorCalendarScreen(paddingValues = paddingValues)
+                CastorCalendarScreen(
+                    castorUiState = castorUiState,
+                    paddingValues = paddingValues
+                )
             }
             composable(route = CastorAppScreen.ExercisesList.title) {
-                CastorExercisesListScreen(paddingValues = paddingValues)
+                CastorExercisesListScreen(
+                    castorUiState = castorUiState,
+                    paddingValues = paddingValues
+                )
             }
             composable(route = CastorAppScreen.ExerciseDetails.title) {
-                CastorExerciseDetailsScreen(paddingValues = paddingValues)
+                CastorExerciseDetailsScreen(
+                    castorUiState = castorUiState,
+                    paddingValues = paddingValues
+                )
             }
         }
     }

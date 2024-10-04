@@ -19,7 +19,10 @@ import com.ignismark.castor.data.Exercise
 import com.ignismark.castor.data.local.LocalExercisesDataProvider.exercises
 
 @Composable
-fun CastorExerciseDetailsScreen(paddingValues: PaddingValues) {
+fun CastorExerciseDetailsScreen(
+    castorUiState: CastorUiState,
+    paddingValues: PaddingValues
+) {
     Surface(modifier = Modifier
         .fillMaxWidth()
         .padding(paddingValues)
@@ -70,5 +73,8 @@ fun ExerciseDetailsCard(exercise: Exercise) {
 @Preview(showSystemUi = true)
 @Composable
 fun CastorExerciseDetailsScreenPreview() {
-    CastorExerciseDetailsScreen(PaddingValues())
+    CastorExerciseDetailsScreen(
+        castorUiState = CastorUiState(),
+        paddingValues = PaddingValues()
+    )
 }
