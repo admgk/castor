@@ -30,4 +30,12 @@ class CastorViewModel : ViewModel() {
             )
         }
     }
+
+    fun toggleIsDialogVisible() {
+        _uiState.update {
+            it.copy(
+                isDialogVisible = !it.isDialogVisible
+            )
+        }
+    }
 }

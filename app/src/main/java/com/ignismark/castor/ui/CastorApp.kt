@@ -19,10 +19,14 @@ fun CastorApp() {
 
     Scaffold(
         topBar = {
-            CastorTopBar()
+            CastorTopBar(
+                castorViewModel = viewModel
+            )
         },
         bottomBar = {
-            CastorBottomNavigation(navController = navController)
+            CastorBottomNavigation(
+                castorViewModel = viewModel,
+                navController = navController)
         }
     ) { paddingValues ->
 
@@ -48,6 +52,12 @@ fun CastorApp() {
                     paddingValues = paddingValues
                 )
             }
+        }
+
+        if (castorUiState.isDialogVisible) {
+            AvailableSoonDialog(
+                closeDialog = { viewModel.toggleIsDialogVisible() }
+            )
         }
     }
 }
