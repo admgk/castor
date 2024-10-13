@@ -19,12 +19,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.ignismark.castor.data.Exercise
 import com.ignismark.castor.data.local.LocalExercisesDataProvider.exercises
 
 @Composable
 fun CastorExercisesListScreen(
     castorUiState: CastorUiState,
+    castorViewModel: CastorViewModel,
+    navController: NavController,
     paddingValues: PaddingValues
 ) {
     Surface(modifier = Modifier
@@ -33,15 +37,24 @@ fun CastorExercisesListScreen(
     ) {
         LazyColumn(contentPadding = PaddingValues(4.dp)) {
             items(exercises) { exercise ->
-                ExerciseCard(exercise)
+                ExerciseCard(
+                    exercise = exercise,
+                    onClick = {
+                        castorViewModel.updateCurrentSelectedExercise(exercise)
+                        navController.navigate(CastorAppScreen.ExerciseDetails.title)
+                    }
+                )
             }
         }
     }
 }
 
 @Composable
-fun ExerciseCard(exercise: Exercise) {
-    Card(onClick = { /*TODO*/ },
+fun ExerciseCard(
+    exercise: Exercise,
+    onClick: () -> Unit
+) {
+    Card(onClick = onClick,
         border = BorderStroke(1.dp, Color.LightGray),
         elevation = CardDefaults.cardElevation(2.dp),
         modifier = Modifier
@@ -83,6 +96,8 @@ fun ExerciseCard(exercise: Exercise) {
 fun CastorExercisesScreenPreview() {
     CastorExercisesListScreen(
         castorUiState = CastorUiState(),
+        castorViewModel = CastorViewModel(),
+        navController = rememberNavController(),
         paddingValues = PaddingValues()
     )
 }

@@ -43,12 +43,15 @@ fun CastorApp() {
             composable(route = CastorAppScreen.ExercisesList.title) {
                 CastorExercisesListScreen(
                     castorUiState = castorUiState,
+                    castorViewModel = viewModel,
+                    navController = navController,
                     paddingValues = paddingValues
                 )
             }
             composable(route = CastorAppScreen.ExerciseDetails.title) {
                 CastorExerciseDetailsScreen(
                     castorUiState = castorUiState,
+                    navController = navController,
                     paddingValues = paddingValues
                 )
             }
