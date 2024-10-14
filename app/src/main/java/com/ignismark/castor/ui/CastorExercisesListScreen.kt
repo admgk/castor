@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ignismark.castor.data.Exercise
-import com.ignismark.castor.data.local.LocalExercisesDataProvider.exercises
 
 @Composable
 fun CastorExercisesListScreen(
@@ -36,7 +35,7 @@ fun CastorExercisesListScreen(
         .padding(paddingValues)
     ) {
         LazyColumn(contentPadding = PaddingValues(4.dp)) {
-            items(exercises) { exercise ->
+            items(castorUiState.exercisesAll) { exercise ->
                 ExerciseCard(
                     exercise = exercise,
                     onClick = {
