@@ -8,10 +8,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.window.core.layout.WindowSizeClass
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.ignismark.castor.ui.theme.CastorTheme
 
 @Composable
-fun CastorApp() {
+fun CastorApp(
+    windowWidth: WindowWidthSizeClass
+) {
 
     val viewModel: CastorViewModel = viewModel()
     val castorUiState = viewModel.uiState.collectAsState().value
@@ -45,6 +49,7 @@ fun CastorApp() {
                     castorUiState = castorUiState,
                     castorViewModel = viewModel,
                     navController = navController,
+                    windowWidth = windowWidth,
                     paddingValues = paddingValues
                 )
             }
@@ -76,6 +81,8 @@ enum class CastorAppScreen(val title: String) {
 @Composable
 fun CastorPreview() {
     CastorTheme {
-        CastorApp()
+        CastorApp(
+            windowWidth = WindowSizeClass.compute(999.0F, 999F).windowWidthSizeClass
+        )
     }
 }

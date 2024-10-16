@@ -17,10 +17,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.ignismark.castor.data.Exercise
 
 @Composable
@@ -28,20 +30,39 @@ fun CastorExercisesListScreen(
     castorUiState: CastorUiState,
     castorViewModel: CastorViewModel,
     navController: NavController,
+    windowWidth: WindowWidthSizeClass,
     paddingValues: PaddingValues
 ) {
-    Surface(modifier = Modifier
-        .fillMaxSize()
-        .padding(paddingValues)
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
     ) {
-        LazyColumn(contentPadding = PaddingValues(4.dp)) {
-            items(castorUiState.exercisesAll) { exercise ->
-                ExerciseCard(
-                    exercise = exercise,
-                    onClick = {
-                        castorViewModel.updateCurrentSelectedExercise(exercise)
-                        navController.navigate(CastorAppScreen.ExerciseDetails.title)
-                    }
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            LazyColumn(
+                modifier = Modifier.weight(1f),
+                contentPadding = PaddingValues(4.dp)
+            ) {
+                items(castorUiState.exercisesAll) { exercise ->
+                    ExerciseCard(
+                        exercise = exercise,
+                        onClick = {
+                            castorViewModel.updateCurrentSelectedExercise(exercise)
+                            if (windowWidth == WindowWidthSizeClass.COMPACT) {
+                                navController.navigate(CastorAppScreen.ExerciseDetails.title)
+                            }
+                        }
+                    )
+                }
+            }
+
+            if (windowWidth != WindowWidthSizeClass.COMPACT) {
+                ExerciseDetailsCard(
+                    modifier = Modifier.weight(1f),
+                    exercise = castorUiState.currentSelectedExercise,
+                    navigateBack = { navController.navigate(CastorAppScreen.ExercisesList.title) }
                 )
             }
         }
@@ -61,8 +82,7 @@ fun ExerciseCard(
             .padding(bottom = 4.dp)
     ) {
         Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = exercise.name,
@@ -90,13 +110,14 @@ fun ExerciseCard(
     }
 }
 
-@Preview(showSystemUi = true)
+@Preview(showSystemUi = true, device = Devices.TABLET)
 @Composable
 fun CastorExercisesScreenPreview() {
     CastorExercisesListScreen(
         castorUiState = CastorUiState(),
         castorViewModel = CastorViewModel(),
         navController = rememberNavController(),
+        windowWidth = WindowWidthSizeClass.MEDIUM,
         paddingValues = PaddingValues()
     )
 }

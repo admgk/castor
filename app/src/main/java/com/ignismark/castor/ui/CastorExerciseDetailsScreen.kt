@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ignismark.castor.data.Exercise
-import com.ignismark.castor.data.local.LocalExercisesDataProvider.exercises
 
 @Composable
 fun CastorExerciseDetailsScreen(
@@ -40,13 +39,14 @@ fun CastorExerciseDetailsScreen(
 
 @Composable
 fun ExerciseDetailsCard(
+    modifier: Modifier = Modifier,
     exercise: Exercise,
     navigateBack: () -> Unit
 ) {
     Card(
         border = BorderStroke(1.dp, Color.LightGray),
         elevation = CardDefaults.cardElevation(2.dp),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(all = 32.dp)
     ) {
