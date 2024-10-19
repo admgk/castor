@@ -2,7 +2,6 @@ package com.ignismark.castor.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -24,10 +23,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,11 +64,14 @@ fun CastorBottomNavigation(
     navController: NavController,
     modifier: Modifier = Modifier
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
     NavigationBar(
         modifier = modifier
     ) {
         NavigationBarItem(
-            selected = true,
+            selected = currentRoute == CastorAppScreen.Calendar.title,
             onClick = { navController.navigate(CastorAppScreen.Calendar.title) },
             icon = {
                 Icon(
@@ -79,7 +83,7 @@ fun CastorBottomNavigation(
             }
         )
         NavigationBarItem(
-            selected = false,
+            selected = currentRoute == CastorAppScreen.Plan.title,
             onClick = { castorViewModel.toggleIsDialogVisible() },
             icon = {
                 Icon(
@@ -91,7 +95,9 @@ fun CastorBottomNavigation(
             }
         )
         NavigationBarItem(
-            selected = false,
+            selected =
+                    currentRoute == CastorAppScreen.ExercisesList.title ||
+                    currentRoute == CastorAppScreen.ExerciseDetails.title,
             onClick = { navController.navigate(CastorAppScreen.ExercisesList.title) },
             icon = {
                 Icon(
