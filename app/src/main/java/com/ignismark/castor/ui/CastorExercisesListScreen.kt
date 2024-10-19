@@ -24,13 +24,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.window.core.layout.WindowWidthSizeClass
 import com.ignismark.castor.data.Exercise
+import com.ignismark.castor.utils.CastorContentType
 
 @Composable
 fun CastorExercisesListScreen(
     castorUiState: CastorUiState,
     castorViewModel: CastorViewModel,
     navController: NavController,
-    windowWidth: WindowWidthSizeClass,
+    contentType: CastorContentType,
     paddingValues: PaddingValues
 ) {
     Surface(
@@ -50,7 +51,7 @@ fun CastorExercisesListScreen(
                         exercise = exercise,
                         onClick = {
                             castorViewModel.updateCurrentSelectedExercise(exercise)
-                            if (windowWidth == WindowWidthSizeClass.COMPACT) {
+                            if (contentType == CastorContentType.ListOnly) {
                                 navController.navigate(CastorAppScreen.ExerciseDetails.title)
                             }
                         }
@@ -58,7 +59,7 @@ fun CastorExercisesListScreen(
                 }
             }
 
-            if (windowWidth != WindowWidthSizeClass.COMPACT) {
+            if (contentType == CastorContentType.ListAndDetails) {
                 ExerciseDetailsCard(
                     modifier = Modifier.weight(1f),
                     exercise = castorUiState.currentSelectedExercise,
@@ -117,7 +118,7 @@ fun CastorExercisesScreenPreview() {
         castorUiState = CastorUiState(),
         castorViewModel = CastorViewModel(),
         navController = rememberNavController(),
-        windowWidth = WindowWidthSizeClass.MEDIUM,
+        contentType = CastorContentType.ListAndDetails,
         paddingValues = PaddingValues()
     )
 }
