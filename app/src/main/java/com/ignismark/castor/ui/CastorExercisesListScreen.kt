@@ -22,7 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import androidx.window.core.layout.WindowWidthSizeClass
 import com.ignismark.castor.data.Exercise
 import com.ignismark.castor.utils.CastorContentType
 
@@ -63,6 +62,7 @@ fun CastorExercisesListScreen(
                 ExerciseDetailsCard(
                     modifier = Modifier.weight(1f),
                     exercise = castorUiState.currentSelectedExercise,
+                    contentType = contentType,
                     navigateBack = { navController.navigate(CastorAppScreen.ExercisesList.title) }
                 )
             }

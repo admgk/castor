@@ -19,11 +19,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ignismark.castor.data.Exercise
+import com.ignismark.castor.utils.CastorContentType
 
 @Composable
 fun CastorExerciseDetailsScreen(
     castorUiState: CastorUiState,
     navController: NavController,
+    contentType: CastorContentType,
     paddingValues: PaddingValues
 ) {
     Surface(modifier = Modifier
@@ -32,6 +34,7 @@ fun CastorExerciseDetailsScreen(
     ) {
         ExerciseDetailsCard(
             exercise = castorUiState.currentSelectedExercise,
+            contentType = contentType,
             navigateBack = { navController.navigate(CastorAppScreen.ExercisesList.title) }
         )
     }
@@ -41,6 +44,7 @@ fun CastorExerciseDetailsScreen(
 fun ExerciseDetailsCard(
     modifier: Modifier = Modifier,
     exercise: Exercise,
+    contentType: CastorContentType,
     navigateBack: () -> Unit
 ) {
     Card(
@@ -48,7 +52,12 @@ fun ExerciseDetailsCard(
         elevation = CardDefaults.cardElevation(2.dp),
         modifier = modifier
             .fillMaxWidth()
-            .padding(all = 32.dp)
+            .padding(
+                start = 32.dp,
+                top = if (contentType == CastorContentType.ListAndDetails) 4.dp else 32.dp,
+                end = 32.dp,
+                bottom = 32.dp
+                )
     ) {
         Column(
             modifier = Modifier
@@ -96,6 +105,7 @@ fun CastorExerciseDetailsScreenPreview() {
     CastorExerciseDetailsScreen(
         castorUiState = CastorUiState(),
         navController = rememberNavController(),
+        contentType = CastorContentType.ListAndDetails,
         paddingValues = PaddingValues()
     )
 }

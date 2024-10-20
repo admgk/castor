@@ -63,6 +63,7 @@ fun CastorApp(
                 CastorExerciseDetailsScreen(
                     castorUiState = castorUiState,
                     navController = navController,
+                    contentType = contentType,
                     paddingValues = paddingValues
                 )
             }
