@@ -3,10 +3,13 @@ package com.ignismark.castor.ui
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.window.core.layout.WindowWidthSizeClass
 import com.ignismark.castor.ui.theme.CastorTheme
@@ -39,6 +42,8 @@ fun CastorApp(
                 navController = navController)
         }
     ) { paddingValues ->
+
+        NavigateToListFromDetailsOnScreenRotation(navController, contentType)
 
         NavHost(
             navController = navController,
@@ -75,6 +80,21 @@ fun CastorApp(
             )
         }
     }
+}
+
+@Composable
+private fun NavigateToListFromDetailsOnScreenRotation(
+    navController: NavHostController,
+    contentType: CastorContentType
+) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    if (
+        contentType == CastorContentType.ListAndDetails &&
+        currentRoute == CastorAppScreen.ExerciseDetails.title
+    )
+        navController.navigate(CastorAppScreen.ExercisesList.title)
 }
 
 enum class CastorAppScreen(val title: String) {
