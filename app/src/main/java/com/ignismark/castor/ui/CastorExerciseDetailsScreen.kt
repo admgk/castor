@@ -53,7 +53,7 @@ fun ExerciseDetailsCard(
         modifier = modifier
             .fillMaxWidth()
             .padding(
-                start = 32.dp,
+                start = if (contentType == CastorContentType.ListAndDetails) 16.dp else 32.dp,
                 top = if (contentType == CastorContentType.ListAndDetails) 4.dp else 32.dp,
                 end = 32.dp,
                 bottom = 32.dp

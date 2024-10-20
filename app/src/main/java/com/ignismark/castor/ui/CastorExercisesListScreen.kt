@@ -43,7 +43,12 @@ fun CastorExercisesListScreen(
         ) {
             LazyColumn(
                 modifier = Modifier.weight(1f),
-                contentPadding = PaddingValues(4.dp)
+                contentPadding = PaddingValues(
+                    start = if (contentType == CastorContentType.ListAndDetails) 32.dp else 16.dp,
+                    top = 4.dp,
+                    end = 16.dp,
+                    bottom = 4.dp
+                )
             ) {
                 items(castorUiState.exercisesAll) { exercise ->
                     ExerciseCard(
