@@ -19,7 +19,6 @@ import com.ignismark.castor.utils.CastorContentType
 fun CastorApp(
     windowWidth: WindowWidthSizeClass
 ) {
-
     val viewModel: CastorViewModel = viewModel()
     val castorUiState = viewModel.uiState.collectAsState().value
     val navController = rememberNavController()

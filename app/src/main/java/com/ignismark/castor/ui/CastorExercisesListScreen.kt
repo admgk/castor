@@ -1,5 +1,6 @@
 package com.ignismark.castor.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -33,6 +34,10 @@ fun CastorExercisesListScreen(
     contentType: CastorContentType,
     paddingValues: PaddingValues
 ) {
+    BackHandler {
+        navController.popBackStack(route = CastorAppScreen.Calendar.title, inclusive = false)
+    }
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
