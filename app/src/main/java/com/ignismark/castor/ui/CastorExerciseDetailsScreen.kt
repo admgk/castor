@@ -3,7 +3,9 @@ package com.ignismark.castor.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -54,10 +56,10 @@ fun ExerciseDetailsCard(
             .fillMaxWidth()
             .padding(
                 start = if (contentType == CastorContentType.ListAndDetails) 16.dp else 32.dp,
-                top = if (contentType == CastorContentType.ListAndDetails) 4.dp else 32.dp,
+                top = 4.dp,
                 end = 32.dp,
                 bottom = 32.dp
-                )
+            )
     ) {
         Column(
             modifier = Modifier
@@ -90,11 +92,15 @@ fun ExerciseDetailsCard(
                     .padding(bottom = 8.dp)
             )
         }
-        TextButton(
-            onClick = navigateBack,
-            modifier = Modifier.padding(start = 12.dp, bottom = 16.dp)
-        ) {
-            Text(text = "Back")
+        if (contentType == CastorContentType.ListOnly) {
+            TextButton(
+                onClick = navigateBack,
+                modifier = Modifier.padding(start = 12.dp, bottom = 16.dp)
+            ) {
+                Text(text = "Back")
+            }
+        } else {
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
