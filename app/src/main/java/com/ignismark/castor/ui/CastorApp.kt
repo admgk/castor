@@ -51,6 +51,7 @@ fun CastorApp(
             composable(route = CastorAppScreen.Calendar.title) {
                 CastorCalendarScreen(
                     castorUiState = castorUiState,
+                    castorViewModel = viewModel,
                     paddingValues = paddingValues
                 )
             }
