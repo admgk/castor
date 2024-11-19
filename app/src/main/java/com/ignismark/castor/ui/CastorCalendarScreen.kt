@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import java.util.Calendar
 
 @Composable
 fun CastorCalendarScreen(
@@ -42,6 +43,7 @@ fun CastorCalendarScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CastorDatePicker() {
-    val datePickerState = rememberDatePickerState()
+    val rightNow = Calendar.getInstance()
+    val datePickerState = rememberDatePickerState(initialSelectedDateMillis = rightNow.timeInMillis)
     DatePicker(state = datePickerState)
 }
