@@ -38,4 +38,12 @@ class CastorViewModel : ViewModel() {
             )
         }
     }
+
+    fun toggleIsLibraryDialogVisible() {
+        _uiState.update {
+            it.copy(
+                isLibraryDialogVisible = !it.isLibraryDialogVisible
+            )
+        }
+    }
 }

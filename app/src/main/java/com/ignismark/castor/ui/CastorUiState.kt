@@ -7,5 +7,6 @@ data class CastorUiState(
     val exercisesAll: List<Exercise> = emptyList(),
     val currentSelectedExercise: Exercise = LocalExercisesDataProvider.defaultExercise,
     val datePicked: String = "",
-    val isDialogVisible: Boolean = false
+    val isDialogVisible: Boolean = false,
+    val isLibraryDialogVisible: Boolean = false
 )

@@ -37,6 +37,7 @@ fun CastorApp(
         },
         bottomBar = {
             CastorBottomNavigation(
+                castorUiState = castorUiState,
                 castorViewModel = viewModel,
                 navController = navController)
         }
