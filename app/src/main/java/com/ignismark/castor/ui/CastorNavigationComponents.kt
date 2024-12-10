@@ -100,10 +100,9 @@ fun CastorBottomNavigation(
             }
         )
         NavigationBarItem(
-            selected =
+            selected = castorUiState.isLibraryDialogVisible ||
                     currentRoute == CastorAppScreen.ExercisesList.title ||
                     currentRoute == CastorAppScreen.ExerciseDetails.title,
-            //onClick = { navController.navigate(CastorAppScreen.ExercisesList.title) },
             onClick = { castorViewModel.toggleIsLibraryDialogVisible() },
             icon = {
                 Icon(
@@ -118,7 +117,8 @@ fun CastorBottomNavigation(
 
     if (castorUiState.isLibraryDialogVisible) {
         LibraryDialog(
-            closeDialog = { castorViewModel.toggleIsLibraryDialogVisible() }
+            closeDialog = { castorViewModel.toggleIsLibraryDialogVisible() },
+            navController = navController
         )
     }
 }
@@ -157,6 +157,7 @@ fun AvailableSoonDialog(
 @Composable
 fun LibraryDialog(
     closeDialog: () -> Unit,
+    navController: NavController
 ) {
     BasicAlertDialog(
         onDismissRequest = closeDialog
@@ -172,7 +173,10 @@ fun LibraryDialog(
             ) {
                 Row {
                     OutlinedButton(
-                        onClick = {  }
+                        onClick = {
+                            closeDialog()
+                            navController.navigate(CastorAppScreen.ExercisesList.title)
+                        }
                     ) {
                         Text(text = "Exercises")
                     }
@@ -198,10 +202,4 @@ fun LibraryDialog(
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun LibraryDialogPreview() {
-    LibraryDialog({})
 }
