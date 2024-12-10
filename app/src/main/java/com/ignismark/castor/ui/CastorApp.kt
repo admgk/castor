@@ -73,6 +73,15 @@ fun CastorApp(
                     paddingValues = paddingValues
                 )
             }
+            composable(route = CastorAppScreen.BooksList.title) {
+                CastorBooksListScreen(
+                    castorUiState = castorUiState,
+                    castorViewModel = viewModel,
+                    navController = navController,
+                    contentType = contentType,
+                    paddingValues = paddingValues
+                )
+            }
         }
 
         if (castorUiState.isDialogVisible) {
@@ -102,7 +111,8 @@ enum class CastorAppScreen(val title: String) {
     Calendar(title = "calendar"),
     Plan(title = "plan"),
     ExercisesList(title = "exercisesList"),
-    ExerciseDetails(title = "exerciseDetails")
+    ExerciseDetails(title = "exerciseDetails"),
+    BooksList(title = "books")
 }
 
 @Preview(showBackground = true)

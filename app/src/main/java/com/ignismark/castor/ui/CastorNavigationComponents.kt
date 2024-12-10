@@ -29,7 +29,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -188,7 +187,10 @@ fun LibraryDialog(
                     }
                 }
                 OutlinedButton(
-                    onClick = {  },
+                    onClick = {
+                        closeDialog()
+                        navController.navigate(CastorAppScreen.BooksList.title)
+                    },
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 ) {
                     Text(text = "Books")
