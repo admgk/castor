@@ -120,16 +120,3 @@ fun ExerciseCard(
         }
     }
 }
-
-@Preview(showSystemUi = true, device = Devices.TABLET)
-@Composable
-fun CastorExercisesScreenPreview() {
-    CastorExercisesListScreen(
-        castorUiState = CastorUiState(),
-        castorViewModel = CastorViewModel(),
-        navController = rememberNavController(),
-        contentType = CastorContentType.ListAndDetails,
-        paddingValues = PaddingValues()
-    )
-}
-
