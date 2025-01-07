@@ -116,6 +116,7 @@ fun CastorBottomNavigation(
 
     if (castorUiState.isLibraryDialogVisible) {
         LibraryDialog(
+            castorViewModel = castorViewModel,
             closeDialog = { castorViewModel.toggleIsLibraryDialogVisible() },
             navController = navController
         )
@@ -155,6 +156,7 @@ fun AvailableSoonDialog(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LibraryDialog(
+    castorViewModel: CastorViewModel,
     closeDialog: () -> Unit,
     navController: NavController
 ) {
@@ -189,6 +191,7 @@ fun LibraryDialog(
                 OutlinedButton(
                     onClick = {
                         closeDialog()
+                        castorViewModel.getFitnessBooks()
                         navController.navigate(CastorAppScreen.BooksList.title)
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally)

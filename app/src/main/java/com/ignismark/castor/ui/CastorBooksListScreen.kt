@@ -52,9 +52,10 @@ fun CastorBooksListScreen(
                     bottom = 4.dp
                 )
             ) {
-                items(listOf(
-                    Book(title = "testTitle", authors = listOf("testAuth1", "testAuth2"), publisher = "testPublisher1", publishedDate = "2024", thumbnail = "testURL"),
-                    Book(title = "testTitle2", authors = listOf("testAuth3", "testAuth4"), publisher = "testPublisher2", publishedDate = "2024", thumbnail = "testURL2"))
+                items(castorUiState.fitnessBooks
+                //listOf(
+                    //Book(title = "testTitle", authors = listOf("testAuth1", "testAuth2"), publisher = "testPublisher1", publishedDate = "2024", thumbnail = "testURL"),
+                    //Book(title = "testTitle2", authors = listOf("testAuth3", "testAuth4"), publisher = "testPublisher2", publishedDate = "2024", thumbnail = "testURL2"))
                 ) { book ->
                     BookCard(book = book)
                 }
