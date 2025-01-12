@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ignismark.castor.data.Book
+import com.ignismark.castor.data.BookItem
 import com.ignismark.castor.utils.CastorContentType
 
 @Composable
@@ -53,9 +54,6 @@ fun CastorBooksListScreen(
                 )
             ) {
                 items(castorUiState.fitnessBooks
-                //listOf(
-                    //Book(title = "testTitle", authors = listOf("testAuth1", "testAuth2"), publisher = "testPublisher1", publishedDate = "2024", thumbnail = "testURL"),
-                    //Book(title = "testTitle2", authors = listOf("testAuth3", "testAuth4"), publisher = "testPublisher2", publishedDate = "2024", thumbnail = "testURL2"))
                 ) { book ->
                     BookCard(book = book)
                 }
@@ -66,7 +64,7 @@ fun CastorBooksListScreen(
 
 @Composable
 fun BookCard(
-    book: Book,
+    book: BookItem,
 ) {
     Card(border = BorderStroke(1.dp, Color.LightGray),
         elevation = CardDefaults.cardElevation(2.dp),
@@ -78,7 +76,7 @@ fun BookCard(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = book.title,
+                text = book.id,
                 textAlign = TextAlign.Left,
                 modifier = Modifier
                     .padding(
@@ -89,7 +87,7 @@ fun BookCard(
                     )
             )
             Text(
-                text = book.authors.toString(),
+                text = book.id.toString(),
                 textAlign = TextAlign.Right,
                 modifier = Modifier
                     .padding(

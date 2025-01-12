@@ -28,16 +28,17 @@ class CastorViewModel(private val fitnessBooksRepository: FitnessBooksRepository
 
     fun getFitnessBooks() {
         viewModelScope.launch {
-            _uiState.update {
-                it.copy(
-                    fitnessBooks = try {
-                        fitnessBooksRepository.getFitnessBooks()
-                    } catch (e: IOException) {
-                        emptyList<Book>()
-                    } catch (e: HttpException) {
-                        emptyList<Book>()
-                    }
-                )
+            try {
+                val nestedJson = fitnessBooksRepository.getFitnessBooks()
+                _uiState.update {
+                    it.copy(
+                        fitnessBooks = nestedJson.items
+                    )
+                }
+            } catch (e: IOException) {
+                emptyList<Book>()
+            } catch (e: HttpException) {
+                emptyList<Book>()
             }
         }
     }
