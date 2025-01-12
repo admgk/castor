@@ -8,5 +8,11 @@ data class Book(
     val authors: List<String>,
     val publisher: String,
     val publishedDate: String,
+    val imageLinks: ImageLinks
+)
+
+@Serializable
+data class ImageLinks(
+    val smallThumbnail: String,
     val thumbnail: String
 )
