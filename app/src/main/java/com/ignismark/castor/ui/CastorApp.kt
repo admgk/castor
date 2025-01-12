@@ -78,7 +78,6 @@ fun CastorApp(
                     castorUiState = castorUiState,
                     castorViewModel = viewModel,
                     navController = navController,
-                    contentType = contentType,
                     paddingValues = paddingValues
                 )
             }

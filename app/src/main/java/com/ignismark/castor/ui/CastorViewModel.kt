@@ -6,9 +6,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.ignismark.castor.CastorApplication
-import com.ignismark.castor.data.Book
+import com.ignismark.castor.data.BookItem
 import com.ignismark.castor.data.Exercise
 import com.ignismark.castor.data.FitnessBooksRepository
+import com.ignismark.castor.data.local.LocalBookDataProvider
 import com.ignismark.castor.data.local.LocalExercisesDataProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -36,9 +37,17 @@ class CastorViewModel(private val fitnessBooksRepository: FitnessBooksRepository
                     )
                 }
             } catch (e: IOException) {
-                emptyList<Book>()
+                _uiState.update {
+                    it.copy(
+                        fitnessBooks = LocalBookDataProvider.book
+                    )
+                }
             } catch (e: HttpException) {
-                emptyList<Book>()
+                _uiState.update {
+                    it.copy(
+                        fitnessBooks = LocalBookDataProvider.book
+                    )
+                }
             }
         }
     }
@@ -83,5 +92,9 @@ class CastorViewModel(private val fitnessBooksRepository: FitnessBooksRepository
                 isLibraryDialogVisible = !it.isLibraryDialogVisible
             )
         }
+    }
+
+    fun prepareImageURL(bookItem: BookItem): String {
+        return bookItem.volumeInfo.imageLinks.thumbnail.replace("http", "https")
     }
 }
