@@ -1,7 +1,7 @@
 package com.ignismark.castor.ui
 
 import com.ignismark.castor.data.BookItem
-import com.ignismark.castor.data.Exercise
+import com.ignismark.castor.model.Exercise
 import com.ignismark.castor.data.local.LocalExercisesDataProvider
 
 data class CastorUiState(

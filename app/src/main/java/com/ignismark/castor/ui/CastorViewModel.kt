@@ -7,7 +7,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.ignismark.castor.CastorApplication
 import com.ignismark.castor.data.BookItem
-import com.ignismark.castor.data.Exercise
+import com.ignismark.castor.model.Exercise
 import com.ignismark.castor.data.FitnessBooksRepository
 import com.ignismark.castor.data.local.LocalBookDataProvider
 import com.ignismark.castor.data.local.LocalExercisesDataProvider

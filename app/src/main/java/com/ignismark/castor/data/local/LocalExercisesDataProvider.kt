@@ -1,6 +1,6 @@
 package com.ignismark.castor.data.local
 
-import com.ignismark.castor.data.Exercise
+import com.ignismark.castor.model.Exercise
 
 object LocalExercisesDataProvider {
     val exercises: List<Exercise> = listOf(
