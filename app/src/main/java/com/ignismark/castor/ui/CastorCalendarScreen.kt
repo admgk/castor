@@ -15,12 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavController
 import java.util.Calendar
 
 @Composable
 fun CastorCalendarScreen(
     castorUiState: CastorUiState,
     castorViewModel: CastorViewModel,
+    navController: NavController,
     paddingValues: PaddingValues
 ) {
     val activity = LocalContext.current as Activity
@@ -32,7 +34,7 @@ fun CastorCalendarScreen(
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             CastorDatePicker()
             OutlinedButton(
-                onClick = { castorViewModel.toggleIsDialogVisible() }
+                onClick = { navController.navigate(CastorAppScreen.Workout.title) }
             ) {
                 Text(text = "Add workout")    
             }

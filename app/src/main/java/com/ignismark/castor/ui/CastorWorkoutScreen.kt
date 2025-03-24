@@ -18,8 +18,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.ignismark.castor.data.local.LocalWorkoutDataProvider
 import com.ignismark.castor.model.Workout
@@ -45,7 +48,7 @@ fun CastorWorkoutScreen(
         Column {
             WorkoutInfoCard(workout = LocalWorkoutDataProvider.workout)
         }
-        Row(
+        /*Row(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             LazyColumn(
@@ -78,7 +81,7 @@ fun CastorWorkoutScreen(
                     navigateBack = { navController.navigate(CastorAppScreen.ExercisesList.title) }
                 )
             }
-        }
+        }*/
     }
 }
 
