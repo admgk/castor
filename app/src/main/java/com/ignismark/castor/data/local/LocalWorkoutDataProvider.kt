@@ -17,10 +17,10 @@ object LocalWorkoutDataProvider {
             date = LocalDate.of( 2025,  3,  19),
             startTime = LocalTime.of(14,  30),
             endTime = LocalTime.of(15,  18),
-            duration = Duration.parse("58"),
+            duration = Duration.parse("58m"),
             sets = listOf(
                 Set(
-                    rest = Duration.parse("10"),
+                    rest = Duration.parse("1m"),
                     attempts = listOf(
                         Attempt(
                             exercise = LocalExercisesDataProvider.exercises[0],
