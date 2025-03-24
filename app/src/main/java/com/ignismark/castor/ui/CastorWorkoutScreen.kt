@@ -21,7 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.ignismark.castor.model.Exercise
+import com.ignismark.castor.data.local.LocalWorkoutDataProvider
 import com.ignismark.castor.model.Workout
 import com.ignismark.castor.utils.CastorContentType
 
@@ -43,7 +43,7 @@ fun CastorWorkoutScreen(
             .padding(paddingValues)
     ) {
         Column {
-            WorkoutInfoCard(workout = )
+            WorkoutInfoCard(workout = LocalWorkoutDataProvider.workout)
         }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween

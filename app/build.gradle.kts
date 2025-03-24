@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.ignismark.castor"
-        minSdk = 24
+        minSdkVersion(rootProject.extra["defaultMinSdkVersion"] as Int)
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"

@@ -1,7 +1,5 @@
 package com.ignismark.castor.data.local
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.ignismark.castor.model.Attempt
 import com.ignismark.castor.model.RepsAndWeight
 import com.ignismark.castor.model.Set
@@ -11,7 +9,6 @@ import java.time.LocalTime
 import kotlin.time.Duration
 
 object LocalWorkoutDataProvider {
-    @RequiresApi(Build.VERSION_CODES.O)
     val workout: Workout =
         Workout(
             date = LocalDate.of( 2025,  3,  19),
