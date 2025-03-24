@@ -105,14 +105,15 @@ fun WorkoutInfoCard(
                 textAlign = TextAlign.Center,
             )
             Row(
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = String.format("s% - s%", workout.startTime, workout.endTime),
+                    text = "${workout.startTime} - ${workout.endTime}",
                     textAlign = TextAlign.Center
                 )
                 Text(
-                    text = String.format("(s%)", workout.duration),
+                    text = workout.duration.toString(),
                     textAlign = TextAlign.Center
                 )
             }
