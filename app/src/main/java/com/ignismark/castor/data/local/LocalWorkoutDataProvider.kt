@@ -43,27 +43,48 @@ object LocalWorkoutDataProvider {
                     )
                 ),
                 Set(
-                    rest = Duration.parse("2m"),
+                    rest = Duration.parse("1m"),
                     attempts = listOf(
                         Attempt(
                             exercise = LocalExercisesDataProvider.exercises[1],
                             amount = RepsAndWeight(
                                 reps = 6,
-                                weight = 25.0
+                                weight = 15.0
+                            )
+                        ),
+                        Attempt(
+                            exercise = LocalExercisesDataProvider.exercises[2],
+                            amount = RepsAndWeight(
+                                reps = 5,
+                                weight = 45.0
                             )
                         ),
                         Attempt(
                             exercise = LocalExercisesDataProvider.exercises[1],
                             amount = RepsAndWeight(
                                 reps = 5,
-                                weight = 25.0
+                                weight = 15.0
+                            )
+                        ),
+                        Attempt(
+                            exercise = LocalExercisesDataProvider.exercises[2],
+                            amount = RepsAndWeight(
+                                reps = 5,
+                                weight = 45.0
                             )
                         ),
                         Attempt(
                             exercise = LocalExercisesDataProvider.exercises[1],
                             amount = RepsAndWeight(
                                 reps = 4,
-                                weight = 22.5
+                                weight = 12.5
+                            )
+                        ),
+                        Attempt(
+                            exercise = LocalExercisesDataProvider.exercises[2],
+                            amount = RepsAndWeight(
+                                reps = 5,
+                                weight = 45.0
                             )
                         )
                     )
