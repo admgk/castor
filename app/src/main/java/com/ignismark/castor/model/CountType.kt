@@ -1,7 +1,7 @@
 package com.ignismark.castor.model
 
-sealed interface CountType {
-    val name: String
-
-    override fun toString(): String
+enum class CountType {
+    REPS_AND_WEIGHT,
+    TIME_AND_DISTANCE,
+    TIME_AND_WEIGHT
 }

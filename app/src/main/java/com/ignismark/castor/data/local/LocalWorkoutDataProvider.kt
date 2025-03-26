@@ -1,7 +1,7 @@
 package com.ignismark.castor.data.local
 
+import com.ignismark.castor.data.local.LocalExercisesDataProvider
 import com.ignismark.castor.model.Attempt
-import com.ignismark.castor.model.RepsAndWeight
 import com.ignismark.castor.model.Set
 import com.ignismark.castor.model.Workout
 import java.time.LocalDate
@@ -17,79 +17,89 @@ object LocalWorkoutDataProvider {
             duration = Duration.parse("58m"),
             sets = listOf(
                 Set(
-                    rest = Duration.parse("1m"),
+                    /*results = mapOf(
+                        LocalExercisesDataProvider.exercises[0] to RepsAndWeight(
+                            reps = 10,
+                            weight = 100.0
+                        ),
+                    ),*/
                     attempts = listOf(
                         Attempt(
                             exercise = LocalExercisesDataProvider.exercises[0],
-                            amount = RepsAndWeight(
-                                reps = 10,
-                                weight = 100.0
-                            )
+                            reps = 10.0,
+                            weight = 100.0,
+                            time = null,
+                            distance = null
                         ),
                         Attempt(
                             exercise = LocalExercisesDataProvider.exercises[0],
-                            amount = RepsAndWeight(
-                                reps = 9,
-                                weight = 100.0
-                            )
+                            reps = 10.0,
+                            weight = 100.0,
+                            time = null,
+                            distance = null
                         ),
                         Attempt(
                             exercise = LocalExercisesDataProvider.exercises[0],
-                            amount = RepsAndWeight(
-                                reps = 8,
-                                weight = 100.0
-                            )
+                            reps = 10.0,
+                            weight = 100.0,
+                            time = null,
+                            distance = null
                         )
-                    )
+                    ),
+                    rest = Duration.parse("1m")
                 ),
                 Set(
-                    rest = Duration.parse("1m"),
                     attempts = listOf(
                         Attempt(
                             exercise = LocalExercisesDataProvider.exercises[1],
-                            amount = RepsAndWeight(
-                                reps = 6,
-                                weight = 15.0
-                            )
-                        ),
-                        Attempt(
-                            exercise = LocalExercisesDataProvider.exercises[2],
-                            amount = RepsAndWeight(
-                                reps = 5,
-                                weight = 45.0
-                            )
+                            reps = 10.0,
+                            weight = 100.0,
+                            time = null,
+                            distance = null
                         ),
                         Attempt(
                             exercise = LocalExercisesDataProvider.exercises[1],
-                            amount = RepsAndWeight(
-                                reps = 5,
-                                weight = 15.0
-                            )
-                        ),
-                        Attempt(
-                            exercise = LocalExercisesDataProvider.exercises[2],
-                            amount = RepsAndWeight(
-                                reps = 5,
-                                weight = 45.0
-                            )
+                            reps = 10.0,
+                            weight = 100.0,
+                            time = null,
+                            distance = null
                         ),
                         Attempt(
                             exercise = LocalExercisesDataProvider.exercises[1],
-                            amount = RepsAndWeight(
-                                reps = 4,
-                                weight = 12.5
-                            )
-                        ),
-                        Attempt(
-                            exercise = LocalExercisesDataProvider.exercises[2],
-                            amount = RepsAndWeight(
-                                reps = 5,
-                                weight = 45.0
-                            )
+                            reps = 10.0,
+                            weight = 100.0,
+                            time = null,
+                            distance = null
                         )
-                    )
+                    ),
+                    rest = Duration.parse("2m")
+                ),
+                Set(
+                    attempts = listOf(
+                        Attempt(
+                            exercise = LocalExercisesDataProvider.exercises[3],
+                            reps = null,
+                            weight = 24.0,
+                            time = Duration.parse("1m"),
+                            distance = null
+                        ),
+                        Attempt(
+                            exercise = LocalExercisesDataProvider.exercises[3],
+                            reps = null,
+                            weight = 24.0,
+                            time = Duration.parse("1m"),
+                            distance = null
+                        ),
+                        Attempt(
+                            exercise = LocalExercisesDataProvider.exercises[3],
+                            reps = null,
+                            weight = 24.0,
+                            time = Duration.parse("1m"),
+                            distance = null
+                        )
+                    ),
+                    rest = Duration.parse("1m")
                 )
             )
-
         )
 }

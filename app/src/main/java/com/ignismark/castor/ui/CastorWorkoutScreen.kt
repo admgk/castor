@@ -120,6 +120,6 @@ fun SetCard(
 fun AttemptItem(attempt: Attempt) {
     Column {
         Text(text = attempt.exercise.name)
-        Text(text = attempt.amount.toString())
+        Text(text = attempt.reps.toString())
     }
 }
