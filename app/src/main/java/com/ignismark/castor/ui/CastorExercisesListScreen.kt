@@ -93,7 +93,7 @@ fun ExerciseCard(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = exercise.name,
+                text = exercise.name.toString(),
                 textAlign = TextAlign.Left,
                 modifier = Modifier
                     .padding(
@@ -104,7 +104,7 @@ fun ExerciseCard(
                     )
             )
             Text(
-                text = exercise.muscleGroup,
+                text = exercise.muscleGroup.toString(),
                 textAlign = TextAlign.Right,
                 modifier = Modifier
                     .padding(

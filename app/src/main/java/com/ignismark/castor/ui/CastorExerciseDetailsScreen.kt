@@ -87,7 +87,7 @@ fun ExerciseDetailsCard(
                     .padding(bottom = 8.dp)
             )
             Text(
-                text = String.format("COUNT TYPE: %s", exercise.countType),
+                text = String.format("PARAMETERS: %s", exercise.parameters),
                 modifier = Modifier
                     .padding(bottom = 8.dp)
             )

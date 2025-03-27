@@ -2,7 +2,6 @@ package com.ignismark.castor.ui
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -23,9 +22,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ignismark.castor.data.local.LocalWorkoutDataProvider
-import com.ignismark.castor.model.Attempt
 import com.ignismark.castor.model.Workout
 import com.ignismark.castor.model.Set
+import com.ignismark.castor.model.WorkoutItem
+import com.ignismark.castor.model.WorkoutItem.ExerciseItem
+import com.ignismark.castor.model.WorkoutItem.SupersetItem
 import com.ignismark.castor.utils.CastorContentType
 
 @Composable
@@ -70,32 +71,23 @@ fun WorkoutInfoCard(
                 text = workout.date.toString(),
                 textAlign = TextAlign.Center,
             )
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = "${workout.startTime} - ${workout.endTime}",
-                    textAlign = TextAlign.Center
-                )
-                Text(
+            Text(
                     text = workout.duration.toString(),
-                    textAlign = TextAlign.Center
-                )
-            }
+            textAlign = TextAlign.Center
+            )
         }
 
         LazyColumn {
-            items(workout.sets) { set ->
-                SetCard(set = set)
+            items(workout.workoutItems) { item ->
+                WorkoutItemCard(item = item)
             }
         }
     }
 }
 
 @Composable
-fun SetCard(
-    set: Set
+fun WorkoutItemCard(
+    item: WorkoutItem
 ) {
     Card(border = BorderStroke(1.dp, Color.LightGray),
         elevation = CardDefaults.cardElevation(2.dp),
@@ -103,23 +95,63 @@ fun SetCard(
             .fillMaxWidth()
             .padding(bottom = 4.dp)
     ) {
-        Column {
-            Text(
-                text = "SET, " + "Rest: ${set.rest}",
-                textAlign = TextAlign.Center,
-            )
-            set.attempts.forEach {
-                AttemptItem(attempt = it)
+        if (item is ExerciseItem) {
+            val exercise = item.exercise
+            Column {
+                Text(
+                    text = exercise.name.toString(),
+                    textAlign = TextAlign.Center,
+                )
+                Row {
+                    exercise.parameters.forEach {
+                        Text(text = it.toString())
+                    }
+                }
+                exercise.sets.forEach {
+                    SetItem(set = it)
+                }
+                HorizontalDivider()
             }
-            HorizontalDivider()
+        } else if (item is SupersetItem) {
+            val superset = item.superset
+            Row {
+                for (exercise in superset.exercises) {
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = exercise.name.toString(),
+                            textAlign = TextAlign.Center,
+                        )
+                        Row {
+                            exercise.parameters.forEach {
+                                Text(text = it.toString())
+                            }
+                        }
+                        exercise.sets.forEach {
+                            SetItem(set = it)
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
 @Composable
-fun AttemptItem(attempt: Attempt) {
-    Column {
-        Text(text = attempt.exercise.name)
-        Text(text = attempt.amount.toString())
+fun SetItem(set: Set) {
+    Row {
+        if (set.reps != null) {
+            Text(text = set.reps.toString())
+        }
+        if (set.weight != null) {
+            Text(text = set.weight.toString())
+        }
+        if (set.duration != null) {
+            Text(text = set.duration.toString())
+        }
+        if (set.distance != null) {
+            Text(text = set.distance.toString())
+        }
     }
 }
