@@ -1,6 +1,5 @@
 package com.ignismark.castor.data.local
 
-import com.ignismark.castor.model.Intensity
 import com.ignismark.castor.model.Workout
 import com.ignismark.castor.model.WorkoutItem
 import java.time.LocalDate
@@ -10,7 +9,6 @@ import kotlin.time.Duration
 object LocalWorkoutDataProvider {
     val workout: Workout = Workout(
         workoutId = UUID.randomUUID().toString(),
-        userId = UUID.randomUUID().toString(),
         date = LocalDate.now(),
         name = "WORKOUT",
         workoutItems = listOf(
@@ -25,7 +23,6 @@ object LocalWorkoutDataProvider {
             )
         ),
         duration = Duration.parse("PT45M"),
-        intensity = Intensity.MEDIUM
     )
 
 

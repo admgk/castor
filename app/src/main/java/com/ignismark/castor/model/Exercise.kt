@@ -3,14 +3,12 @@ package com.ignismark.castor.model
 import kotlin.time.Duration
 
 data class Exercise(
-    val exerciseId: String,
-    val workoutId: String,
     val name: String? = null,
     val equipment: Equipment? = null,
     val muscleGroup: MuscleGroup? = null,
     val notes: String? = null,
     val sets: List<Set> = emptyList(),
-    val parameters: List<ExerciseParameter>, // List of the parameters used for the exercise
+    val parameters: List<ExerciseParameter>,
     val interSetRest: Duration? = null
 )
 
