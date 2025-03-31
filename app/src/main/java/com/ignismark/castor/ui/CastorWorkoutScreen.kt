@@ -1,5 +1,6 @@
 package com.ignismark.castor.ui
 
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -81,6 +83,15 @@ fun WorkoutInfoCard(
             items(workout.workoutItems) { item ->
                 WorkoutItemCard(item = item)
             }
+        }
+
+        OutlinedButton(
+            onClick = { Log.i(
+                "Castor",
+                workout.toString())
+            }
+        ) {
+            Text(text = "Print Log's")
         }
     }
 }
