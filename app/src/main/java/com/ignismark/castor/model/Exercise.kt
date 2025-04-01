@@ -1,8 +1,11 @@
 package com.ignismark.castor.model
 
+import androidx.room.PrimaryKey
 import kotlin.time.Duration
 
 data class Exercise(
+    @PrimaryKey
+    val exerciseId: String,
     val name: String? = null,
     val equipment: Equipment? = null,
     val muscleGroup: MuscleGroup? = null,

@@ -1,9 +1,13 @@
 package com.ignismark.castor.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.time.LocalDate
 import kotlin.time.Duration
 
+@Entity(tableName = "workouts")
 data class Workout(
+    @PrimaryKey
     val workoutId: String,
     val date: LocalDate,
     val name: String = "WORKOUT",
@@ -15,7 +19,7 @@ data class Workout(
         return "workoutId: $workoutId\n" +
                 "date: $date\n" +
                 "name: $name\n" +
-                "notes: $notes\n" +
+                "notes: $notes\n"
                 "workoutItems: ${workoutItems[2]}\n" +
                 "duration: $duration\n"
     }
