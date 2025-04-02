@@ -6,11 +6,13 @@ import com.ignismark.castor.model.ExerciseParameter
 import com.ignismark.castor.model.MuscleGroup
 import com.ignismark.castor.model.Set
 import kotlin.time.Duration
+import java.util.UUID
 
 
 object LocalExercisesDataProvider {
     val exercises: List<Exercise> = listOf(
         Exercise(
+            exerciseId = UUID.randomUUID().toString(),
             name = "Dumbbell Squat",
             equipment = Equipment.DUMBBELL,
             muscleGroup = MuscleGroup.LEGS,
@@ -35,6 +37,7 @@ object LocalExercisesDataProvider {
             interSetRest = Duration.parse("PT1M")
         ),
         Exercise(
+            exerciseId = UUID.randomUUID().toString(),
             name = "Dumbbell Chest Press",
             equipment = Equipment.DUMBBELL,
             muscleGroup = MuscleGroup.CHEST,
@@ -59,6 +62,7 @@ object LocalExercisesDataProvider {
             interSetRest = Duration.parse("PT2M")
         ),
         Exercise(
+            exerciseId = UUID.randomUUID().toString(),
             name = "Push-up",
             equipment = Equipment.NONE,
             muscleGroup = MuscleGroup.CHEST,
@@ -76,9 +80,12 @@ object LocalExercisesDataProvider {
             parameters = listOf(
                 ExerciseParameter.REPS
             ),
-            interSetRest = Duration.parse("PT2M")
+            interSetRest = Duration.parse("PT2M"),
+            inSuperset = true,
+            coupledExerciseId = "Pull-up ID"
         ),
         Exercise(
+            exerciseId = UUID.randomUUID().toString(),
             name = "Pull-up",
             equipment = Equipment.BAR,
             muscleGroup = MuscleGroup.BACK,
@@ -100,7 +107,9 @@ object LocalExercisesDataProvider {
                 ExerciseParameter.REPS,
                 ExerciseParameter.WEIGHT
             ),
-            interSetRest = Duration.parse("PT1M")
+            interSetRest = Duration.parse("PT1M"),
+            inSuperset = true,
+            coupledExerciseId = "Push-up ID"
         )
     )
     val defaultExercise = exercises[0]
