@@ -23,12 +23,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.ignismark.castor.data.local.LocalExercisesDataProvider
 import com.ignismark.castor.data.local.LocalWorkoutDataProvider
-import com.ignismark.castor.model.Workout
+import com.ignismark.castor.model.Exercise
 import com.ignismark.castor.model.Set
-import com.ignismark.castor.model.WorkoutItem
-import com.ignismark.castor.model.WorkoutItem.ExerciseItem
-import com.ignismark.castor.model.WorkoutItem.SupersetItem
+import com.ignismark.castor.model.Workout
 import com.ignismark.castor.utils.CastorContentType
 
 @Composable
@@ -80,8 +79,8 @@ fun WorkoutInfoCard(
         }
 
         LazyColumn {
-            items(workout.workoutItems) { item ->
-                WorkoutItemCard(item = item)
+            items(LocalExercisesDataProvider.exercises) { exercise ->
+                ExerciseCard(exercise = exercise)
             }
         }
 
@@ -97,8 +96,8 @@ fun WorkoutInfoCard(
 }
 
 @Composable
-fun WorkoutItemCard(
-    item: WorkoutItem
+fun ExerciseCard(
+    exercise: Exercise
 ) {
     Card(border = BorderStroke(1.dp, Color.LightGray),
         elevation = CardDefaults.cardElevation(2.dp),
@@ -106,8 +105,26 @@ fun WorkoutItemCard(
             .fillMaxWidth()
             .padding(bottom = 4.dp)
     ) {
-        if (item is ExerciseItem) {
-            val exercise = item.exercise
+        if (exercise.inSuperset) {
+            Row {
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = exercise.name.toString(),
+                        textAlign = TextAlign.Center,
+                    )
+                    Row {
+                        exercise.parameters.forEach {
+                            Text(text = it.toString())
+                        }
+                    }
+                    exercise.sets.forEach {
+                        SetItem(set = it)
+                    }
+                }
+            }
+        } else {
             Column {
                 Text(
                     text = exercise.name.toString(),
@@ -122,28 +139,6 @@ fun WorkoutItemCard(
                     SetItem(set = it)
                 }
                 HorizontalDivider()
-            }
-        } else if (item is SupersetItem) {
-            val superset = item.superset
-            Row {
-                for (exercise in superset.exercises) {
-                    Column(
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(
-                            text = exercise.name.toString(),
-                            textAlign = TextAlign.Center,
-                        )
-                        Row {
-                            exercise.parameters.forEach {
-                                Text(text = it.toString())
-                            }
-                        }
-                        exercise.sets.forEach {
-                            SetItem(set = it)
-                        }
-                    }
-                }
             }
         }
     }
