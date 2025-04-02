@@ -12,7 +12,7 @@ data class Workout(
     val date: LocalDate,
     val name: String = "WORKOUT",
     val notes: String? = null,
-    val workoutItems: List<WorkoutItem> = emptyList(),
+    val exercises: List<String> = emptyList(),
     val duration: Duration,
 ) {
     override fun toString(): String {
@@ -20,12 +20,7 @@ data class Workout(
                 "date: $date\n" +
                 "name: $name\n" +
                 "notes: $notes\n"
-                "workoutItems: ${workoutItems[2]}\n" +
+                "workoutItems: ${exercises}\n" +
                 "duration: $duration\n"
     }
-}
-
-sealed class WorkoutItem {
-    data class ExerciseItem(val exercise: Exercise) : WorkoutItem()
-    data class SupersetItem(val superset: Superset) : WorkoutItem()
 }

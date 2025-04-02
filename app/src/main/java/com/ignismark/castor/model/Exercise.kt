@@ -12,7 +12,9 @@ data class Exercise(
     val notes: String? = null,
     val sets: List<Set> = emptyList(),
     val parameters: List<ExerciseParameter>,
-    val interSetRest: Duration? = null
+    val interSetRest: Duration? = null,
+    val inSuperset: Boolean = false,
+    val coupledExerciseId: String? = null
 )
 
 enum class ExerciseParameter {
