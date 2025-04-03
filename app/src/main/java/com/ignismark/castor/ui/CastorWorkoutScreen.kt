@@ -18,6 +18,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
@@ -29,6 +30,10 @@ import com.ignismark.castor.model.Exercise
 import com.ignismark.castor.model.Set
 import com.ignismark.castor.model.Workout
 import com.ignismark.castor.utils.CastorContentType
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.util.UUID
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun CastorWorkoutScreen(
@@ -48,15 +53,21 @@ fun CastorWorkoutScreen(
             .padding(paddingValues)
     ) {
         Column {
-            WorkoutInfoCard(workout = LocalWorkoutDataProvider.workout)
+            WorkoutInfoCard(
+                workout = LocalWorkoutDataProvider.workout,
+                castorViewModel = castorViewModel
+            )
         }
     }
 }
 
 @Composable
 fun WorkoutInfoCard(
-    workout: Workout
+    workout: Workout,
+    castorViewModel: CastorViewModel
 ) {
+    val coroutineScope = rememberCoroutineScope()
+
     Card(border = BorderStroke(1.dp, Color.LightGray),
         elevation = CardDefaults.cardElevation(2.dp),
         modifier = Modifier
@@ -82,6 +93,29 @@ fun WorkoutInfoCard(
             items(LocalExercisesDataProvider.exercises) { exercise ->
                 ExerciseCard(exercise = exercise)
             }
+        }
+
+        OutlinedButton(
+            onClick = {
+                coroutineScope.launch {
+                    castorViewModel.insertWorkout(
+                        Workout(
+                            workoutId = UUID.randomUUID().toString(),
+                            date = LocalDate.now(),
+                            name = "FBW - dumbbell",
+                            exercises = listOf(
+                                UUID.randomUUID().toString(),
+                                UUID.randomUUID().toString(),
+                                UUID.randomUUID().toString(),
+                                UUID.randomUUID().toString()
+                            ),
+                            duration = 600L.seconds
+                        )
+                    )
+                }
+            }
+        ) {
+            Text(text = "Save workout")
         }
 
         OutlinedButton(
