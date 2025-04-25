@@ -2,7 +2,7 @@ package com.ignismark.castor.data
 
 import android.content.Context
 import com.ignismark.castor.data.database.OfflineWorkoutsRepository
-import com.ignismark.castor.data.database.WorkoutDatabase
+//import com.ignismark.castor.data.database.WorkoutDatabase
 import com.ignismark.castor.data.database.WorkoutsRepository
 import com.ignismark.castor.network.FitnessBooksApiService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -12,7 +12,7 @@ import retrofit2.Retrofit
 
 interface AppContainer {
     val fitnessBooksRepository: FitnessBooksRepository
-    val workoutsRepository: WorkoutsRepository
+    //val workoutsRepository: WorkoutsRepository
 }
 
 class DefaultAppContainer(private val context: Context) : AppContainer {
@@ -33,7 +33,7 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
         DefaultFitnessBooksRepository(retrofitService)
     }
 
-    override val workoutsRepository: WorkoutsRepository by lazy {
+    /*override val workoutsRepository: WorkoutsRepository by lazy {
         OfflineWorkoutsRepository(WorkoutDatabase.getDatabase(context).workoutDao())
-    }
+    }*/
 }

@@ -8,15 +8,14 @@ import kotlin.time.Duration
 object LocalWorkoutDataProvider {
     val workout: Workout = Workout(
         workoutId = UUID.randomUUID().toString(),
-        date = LocalDate.now(),
+        dateString = "2007-12-03",
         name = "WORKOUT",
-        exercises = listOf(
-            LocalExercisesDataProvider.exercises[0].exerciseId,
-            LocalExercisesDataProvider.exercises[1].exerciseId,
-            LocalExercisesDataProvider.exercises[2].exerciseId,
+        exercises =
+            LocalExercisesDataProvider.exercises[0].exerciseId + "," +
+            LocalExercisesDataProvider.exercises[1].exerciseId + "," +
+            LocalExercisesDataProvider.exercises[2].exerciseId + "," +
             LocalExercisesDataProvider.exercises[3].exerciseId,
-        ),
-        duration = Duration.parse("PT45M"),
+        durationString = "PT45M"
     )
 
 

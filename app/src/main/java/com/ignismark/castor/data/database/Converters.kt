@@ -1,5 +1,6 @@
-package com.ignismark.castor.data.database
 
+package com.ignismark.castor.data.database
+/*
 import androidx.room.TypeConverter
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -42,4 +43,4 @@ class Converters {
     fun toDuration(seconds: Long?): Duration? {
         return seconds?.seconds
     }
-}
+}*/

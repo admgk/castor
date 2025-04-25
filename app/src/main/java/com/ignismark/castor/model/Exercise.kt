@@ -4,7 +4,7 @@ import androidx.room.PrimaryKey
 import kotlin.time.Duration
 
 data class Exercise(
-    @PrimaryKey
+    //@PrimaryKey
     val exerciseId: String,
     val name: String? = null,
     val equipment: Equipment? = null,
