@@ -53,6 +53,7 @@ fun CastorApp(
                 CastorCalendarScreen(
                     castorUiState = castorUiState,
                     castorViewModel = viewModel,
+                    navController = navController,
                     paddingValues = paddingValues
                 )
             }
@@ -78,6 +79,15 @@ fun CastorApp(
                     castorUiState = castorUiState,
                     castorViewModel = viewModel,
                     navController = navController,
+                    paddingValues = paddingValues
+                )
+            }
+            composable(route = CastorAppScreen.Workout.title) {
+                CastorWorkoutScreen(
+                    castorUiState = castorUiState,
+                    castorViewModel = viewModel,
+                    navController = navController,
+                    contentType = contentType,
                     paddingValues = paddingValues
                 )
             }
@@ -111,7 +121,8 @@ enum class CastorAppScreen(val title: String) {
     Plan(title = "plan"),
     ExercisesList(title = "exercisesList"),
     ExerciseDetails(title = "exerciseDetails"),
-    BooksList(title = "books")
+    BooksList(title = "books"),
+    Workout(title = "workout")
 }
 
 @Preview(showBackground = true)

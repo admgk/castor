@@ -7,10 +7,12 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.ignismark.castor.CastorApplication
 import com.ignismark.castor.data.BookItem
-import com.ignismark.castor.data.Exercise
+import com.ignismark.castor.model.Exercise
 import com.ignismark.castor.data.FitnessBooksRepository
+import com.ignismark.castor.data.database.WorkoutsRepository
 import com.ignismark.castor.data.local.LocalBookDataProvider
 import com.ignismark.castor.data.local.LocalExercisesDataProvider
+import com.ignismark.castor.model.Workout
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -18,7 +20,10 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-class CastorViewModel(private val fitnessBooksRepository: FitnessBooksRepository) : ViewModel() {
+class CastorViewModel(
+    private val fitnessBooksRepository: FitnessBooksRepository,
+    //private val workoutsRepository: WorkoutsRepository
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(CastorUiState())
     val uiState: StateFlow<CastorUiState> = _uiState
@@ -58,7 +63,11 @@ class CastorViewModel(private val fitnessBooksRepository: FitnessBooksRepository
                 val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
                         as CastorApplication)
                 val fitnessBooksRepository = application.container.fitnessBooksRepository
-                CastorViewModel(fitnessBooksRepository = fitnessBooksRepository)
+                //val workoutsRepository = application.container.workoutsRepository
+                CastorViewModel(
+                    fitnessBooksRepository = fitnessBooksRepository,
+                    //workoutsRepository = workoutsRepository
+                )
             }
         }
     }
@@ -97,4 +106,8 @@ class CastorViewModel(private val fitnessBooksRepository: FitnessBooksRepository
     fun prepareImageURL(bookItem: BookItem): String {
         return bookItem.volumeInfo.imageLinks.thumbnail.replace("http", "https")
     }
+
+    /*suspend fun insertWorkout(workout: Workout) {
+        workoutsRepository.insertWorkout(workout)
+    }*/
 }

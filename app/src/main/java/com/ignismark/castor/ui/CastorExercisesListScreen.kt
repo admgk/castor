@@ -18,12 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.ignismark.castor.data.Exercise
+import com.ignismark.castor.model.Exercise
 import com.ignismark.castor.utils.CastorContentType
 
 @Composable
@@ -96,7 +93,7 @@ fun ExerciseCard(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = exercise.name,
+                text = exercise.name.toString(),
                 textAlign = TextAlign.Left,
                 modifier = Modifier
                     .padding(
@@ -107,7 +104,7 @@ fun ExerciseCard(
                     )
             )
             Text(
-                text = exercise.muscleGroup,
+                text = exercise.muscleGroup.toString(),
                 textAlign = TextAlign.Right,
                 modifier = Modifier
                     .padding(

@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.ignismark.castor.data.Exercise
+import com.ignismark.castor.model.Exercise
 import com.ignismark.castor.utils.CastorContentType
 
 @Composable
@@ -87,7 +87,7 @@ fun ExerciseDetailsCard(
                     .padding(bottom = 8.dp)
             )
             Text(
-                text = String.format("COUNT TYPE: %s", exercise.countType),
+                text = String.format("PARAMETERS: %s", exercise.parameters),
                 modifier = Modifier
                     .padding(bottom = 8.dp)
             )
