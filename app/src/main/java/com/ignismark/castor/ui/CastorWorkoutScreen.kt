@@ -97,7 +97,7 @@ fun WorkoutInfoCard(
 
         OutlinedButton(
             onClick = {
-                /*coroutineScope.launch {
+                coroutineScope.launch {
                     castorViewModel.insertWorkout(
                         Workout(
                             workoutId = UUID.randomUUID().toString(),
@@ -105,13 +105,13 @@ fun WorkoutInfoCard(
                             name = "WORKOUT",
                             exercises =
                                 LocalExercisesDataProvider.exercises[0].exerciseId + "," +
-                                        LocalExercisesDataProvider.exercises[1].exerciseId + "," +
-                                        LocalExercisesDataProvider.exercises[2].exerciseId + "," +
-                                        LocalExercisesDataProvider.exercises[3].exerciseId,
+                                LocalExercisesDataProvider.exercises[1].exerciseId + "," +
+                                LocalExercisesDataProvider.exercises[2].exerciseId + "," +
+                                LocalExercisesDataProvider.exercises[3].exerciseId,
                             durationString = "PT45M"
                         )
                     )
-                }*/
+                }
             }
         ) {
             Text(text = "Save workout")

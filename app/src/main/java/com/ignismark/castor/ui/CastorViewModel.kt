@@ -22,7 +22,7 @@ import java.io.IOException
 
 class CastorViewModel(
     private val fitnessBooksRepository: FitnessBooksRepository,
-    //private val workoutsRepository: WorkoutsRepository
+    private val workoutsRepository: WorkoutsRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(CastorUiState())
@@ -63,10 +63,10 @@ class CastorViewModel(
                 val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
                         as CastorApplication)
                 val fitnessBooksRepository = application.container.fitnessBooksRepository
-                //val workoutsRepository = application.container.workoutsRepository
+                val workoutsRepository = application.container.workoutsRepository
                 CastorViewModel(
                     fitnessBooksRepository = fitnessBooksRepository,
-                    //workoutsRepository = workoutsRepository
+                    workoutsRepository = workoutsRepository
                 )
             }
         }
@@ -107,7 +107,7 @@ class CastorViewModel(
         return bookItem.volumeInfo.imageLinks.thumbnail.replace("http", "https")
     }
 
-    /*suspend fun insertWorkout(workout: Workout) {
+    suspend fun insertWorkout(workout: Workout) {
         workoutsRepository.insertWorkout(workout)
-    }*/
+    }
 }
